@@ -1,0 +1,22 @@
+[Unit]
+Description=colligo
+After=network-online.target
+Wants=network-online.target systemd-networkd-wait-online.service
+
+[Service]
+Type=simple
+User=colligo
+Group=colligo
+KillMode=mixed
+KillSignal=SIGQUIT
+TimeoutStopSec=5s
+ProtectHome=true
+
+ProtectSystem=full
+ReadWriteDirectories=/etc/colligo
+
+WorkingDirectory=/etc/colligo
+ExecStart=/usr/local/bin/colligo
+
+[Install]
+WantedBy=multi-user.target

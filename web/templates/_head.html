@@ -1,0 +1,27 @@
+{{define "head"}}
+
+    		<title>{{ .Page.Title }} - {{ .App.Name }}</title>
+			
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+					
+			<link rel="canonical" href="{{ .App.Url }}{{ .Page.UrlPath }}" />
+			<meta property="og:locale" content="en_GB" />
+			<meta property="og:type" content="website" />
+			<meta property="og:title" content="{{ .Page.Title }} - {{ .App.Name }}" />
+			<meta property="og:description" content="{{ .Page.Description }}" />
+			<meta property="og:url" content="{{ .App.Url }}{{ .Page.UrlPath }}" />
+			<meta property="og:site_name" content="{{ .App.Name }}" />
+			
+			<meta name="twitter:card" content="summary" />
+			<meta name="twitter:site" content="@mt_Stats" />
+			
+			<meta name="generator" content="{{ .App.Name }} {{ .App.Version }}" />
+			
+			<script type="text/javascript" src="{{ .App.Url }}/assets/js/src/modernizr.js"></script>
+			
+			<link rel="stylesheet"  href="{{ .App.Url }}/assets/css/app.min.css" type="text/css" media="all" />
+			
+			<link rel="shortcut icon" href="{{ .App.Url }}/assets/favicon.ico">
+			
+{{end}}
