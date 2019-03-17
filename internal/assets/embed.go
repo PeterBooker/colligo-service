@@ -2,4 +2,4 @@
 
 // +build !dev
 
-package data
+package assets
