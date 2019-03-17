@@ -28,7 +28,7 @@ func main() {
 
 	err = vfsgen.Generate(templates.Files, vfsgen.Options{
 		Filename:     "internal/templates/embed.go",
-		PackageName:  "template",
+		PackageName:  "templates",
 		BuildTags:    "!dev",
 		VariableName: "Files",
 	})
