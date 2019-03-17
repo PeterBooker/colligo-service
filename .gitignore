@@ -11,7 +11,7 @@
 *.out
 
 # Embedded static files
-vfsfiles.go
+*embed.go
 
 # Ignore frontend development modules
 */node_modules/
