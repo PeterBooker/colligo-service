@@ -1,14 +1,23 @@
 package server
 
 import (
+	"html/template"
 	"log"
 	"net/http"
 	"time"
 
+	"github.com/PeterBooker/colligo/internal/auth"
+	"github.com/PeterBooker/colligo/internal/client"
 	"github.com/PeterBooker/colligo/internal/config"
+	"github.com/PeterBooker/colligo/internal/templates"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/shurcooL/httpfs/html/vfstemplate"
 	//"github.com/mholt/certmagic"
+)
+
+var (
+	tmpls *template.Template
 )
 
 // Server holds all the data the App needs
@@ -16,13 +25,19 @@ type Server struct {
 	Logger *log.Logger
 	Config *config.Config
 	Router *chi.Mux
+	Client *http.Client
 }
 
 // New returns a pointer to the main server struct
 func New(l *log.Logger, c *config.Config) *Server {
+
+	tmpl := template.New("").Funcs(template.FuncMap{})
+	tmpls = template.Must(vfstemplate.ParseGlob(templates.Files, tmpl, "*.html"))
+
 	s := &Server{
 		Config: c,
 		Logger: l,
+		Client: client.New(),
 	}
 
 	return s
@@ -30,10 +45,7 @@ func New(l *log.Logger, c *config.Config) *Server {
 
 // Setup starts the HTTP Server
 func (s *Server) Setup() {
-	//err := certmagic.HTTPS([]string{"colligo.dev"}, s.Router)
-	//if err != nil {
-	//s.Logger.Fatalf("HTTP server failed to start: %s\n")
-	//}
+	auth.Setup()
 
 	s.Router = chi.NewRouter()
 
@@ -52,12 +64,5 @@ func (s *Server) Setup() {
 
 	s.routes()
 
-	http := &http.Server{
-		ReadTimeout:  5 * time.Second,
-		WriteTimeout: 10 * time.Second,
-		IdleTimeout:  120 * time.Second,
-		Handler:      s.Router,
-		Addr:         ":80",
-	}
-	go func() { s.Logger.Fatal(http.ListenAndServe()) }()
+	s.startHTTP()
 }
