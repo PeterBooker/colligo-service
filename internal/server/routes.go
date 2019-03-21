@@ -6,8 +6,8 @@ import (
 
 func (s *Server) routes() {
 	// Add Routes
-	s.Router.Get("/", s.webExample())
-	s.Router.Get("/about", s.webExample())
+	s.Router.Get("/", s.webIndex())
+	s.Router.Get("/docs", s.webDocs())
 
 	// Add API v1 routes
 	s.Router.Mount("/api/v1", s.apiRoutes())
@@ -19,7 +19,11 @@ func (s *Server) routes() {
 func (s *Server) apiRoutes() chi.Router {
 	r := chi.NewRouter()
 
-	r.Get("/twitter", s.apiExample())
+	r.Get("/auth/{service}", s.apiAuth())
+
+	r.Get("/callback/{service}", s.apiCallback())
+
+	r.Get("/twitter/callback", s.apiExample())
 
 	return r
 }
