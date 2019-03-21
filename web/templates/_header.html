@@ -1,9 +1,13 @@
 {{define "header"}}<!DOCTYPE html>
 <html>
 
-	<head>
-		{{ template "head" . }}
-	</head>
+<head>
+	{{ template "head" . }}
+</head>
 
-	<body>
+<body>
+
+	<header id="header">
+		{{ template "navigation" . }}
+	</header>
 {{end}}
