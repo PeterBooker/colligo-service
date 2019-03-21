@@ -16,7 +16,7 @@ ProtectSystem=full
 ReadWriteDirectories=/etc/colligo
 
 WorkingDirectory=/etc/colligo
-ExecStart=/usr/local/bin/colligo
+ExecStart=/usr/sbin/colligo
 
 [Install]
 WantedBy=multi-user.target
