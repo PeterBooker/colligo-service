@@ -15,7 +15,8 @@ func fileServer(r chi.Router, path string) {
 		panic("FileServer does not permit URL parameters.")
 	}
 
-	fs := http.FileServer(assets.Files)
+	//fs := http.FileServer(assets.Files)
+	fs := http.StripPrefix(path, http.FileServer(assets.Files))
 
 	if path != "/" && path[len(path)-1] != '/' {
 		r.Get(path, http.RedirectHandler(path+"/", 301).ServeHTTP)
