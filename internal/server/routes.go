@@ -23,7 +23,5 @@ func (s *Server) apiRoutes() chi.Router {
 
 	r.Get("/callback/{service}", s.apiCallback())
 
-	r.Get("/twitter/callback", s.apiExample())
-
 	return r
 }
