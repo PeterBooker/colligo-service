@@ -3,7 +3,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -14,7 +13,6 @@ import (
 
 func main() {
 	wd, _ := os.Getwd()
-	fmt.Println(wd)
 	var err error
 	err = vfsgen.Generate(assets.Files, vfsgen.Options{
 		Filename:     "internal/assets/embed.go",
