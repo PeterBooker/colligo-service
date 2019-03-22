@@ -62,6 +62,8 @@ func (s *Server) Setup() {
 	// processing should be stopped.
 	s.Router.Use(middleware.Timeout(15 * time.Second))
 
+	fileServer(s.Router, "/assets")
+
 	s.routes()
 
 	s.startHTTP()
