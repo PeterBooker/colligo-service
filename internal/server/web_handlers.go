@@ -14,6 +14,7 @@ type App struct {
 
 // Page ...
 type Page struct {
+	Name        string
 	Title       string
 	URLPath     string
 	Description string
@@ -30,6 +31,7 @@ func (s *Server) webIndex() http.HandlerFunc {
 	}
 
 	page := Page{
+		Name:        "index",
 		Title:       "Colligo - Social Data The Easy Way",
 		Description: "Imports Social data into WordPress and gives you full control of how it is displayed.",
 	}
@@ -66,6 +68,7 @@ func (s *Server) webDocs() http.HandlerFunc {
 	}
 
 	page := Page{
+		Name:        "docs",
 		Title:       "Documentation - Colligo",
 		Description: "Documentation on installing and using Colligo.",
 	}
