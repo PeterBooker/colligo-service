@@ -14,7 +14,7 @@ func (s *Server) startHTTP() {
 		WriteTimeout: 10 * time.Second,
 		IdleTimeout:  120 * time.Second,
 		Handler:      s.Router,
-		Addr:         ":80",
+		Addr:         ":9071",
 	}
 	go func() { s.Logger.Fatal(http.ListenAndServe()) }()
 
