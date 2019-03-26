@@ -4,7 +4,6 @@ package main
 
 import (
 	"log"
-	"os"
 
 	"github.com/PeterBooker/colligo/internal/assets"
 	"github.com/PeterBooker/colligo/internal/templates"
@@ -12,7 +11,6 @@ import (
 )
 
 func main() {
-	wd, _ := os.Getwd()
 	var err error
 	err = vfsgen.Generate(assets.Files, vfsgen.Options{
 		Filename:     "internal/assets/embed.go",
