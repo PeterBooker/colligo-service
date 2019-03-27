@@ -2,8 +2,23 @@
  * Root Style File
  */
 
- @import "header";
- @import "navigation";
- @import "content";
- @import "footer";
- 
+// External
+@import "normalize.css/normalize";
+@import "include-media/dist/include-media";
+
+// Theme
+@import "misc";
+@import "global";
+@import "header";
+@import "navigation";
+@import "content";
+@import "footer";
+
+// Components
+@import "components/buttons";
+@import "components/panel";
+@import "components/hero";
+
+// Pages
+@import "pages/home";
+@import "pages/docs";

@@ -1,0 +1,43 @@
+/**
+ * Buttons Component
+ */
+
+.button {
+    position: relative;
+    display: inline-block;
+    padding: rem-calc( 8 48 8 18 );
+    margin: rem-calc( 0 0 18 0 );
+    text-decoration: none;
+    background-color: get-color( bluedark );
+    color: #ffffff;
+    transition: background-color 150ms ease-in-out;
+
+    &:hover,
+    &:active {
+        background-color: darken( rgba(0, 0, 0, 0.25), 10% );
+        color: #ffffff;
+    }
+
+    svg {
+        position: absolute;
+        top: 50%;
+        right: rem-calc( 18 );
+        transform: translateY(-50%);
+
+        fill: #ffffff;
+    }
+
+    &--clear {
+        background-color: transparent;
+        border: 2px solid #ffffff;
+        border-radius: 2px;
+    }
+}
+
+.button-group {
+    padding: 1px;
+
+    .button {
+        margin: rem-calc( 0 18 18 18 );
+    }
+}

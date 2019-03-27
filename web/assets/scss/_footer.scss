@@ -3,5 +3,25 @@
  */
 
 #footer {
-    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: get-color( c1 );
+    color: #ffffff;
+    font-size: rem-calc( 14 );
+
+    padding: rem-calc( 10 20 );
+
+    @include media(">desktop") {
+        padding: rem-calc( 20 40 );
+    }
+
+    &__info {
+
+    }
+
+    &__signature {
+
+    }
 }

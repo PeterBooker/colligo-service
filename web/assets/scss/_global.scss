@@ -1,0 +1,86 @@
+/**
+ * Global
+ */
+
+html {
+    box-sizing: border-box;
+    font-family: $base-font-family;
+}
+
+body {
+    background-color: get-color( bg );
+    font-size: rem-calc( 18 );
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $base-font-family;
+    font-weight: bold;
+    margin: 0;
+    margin-top: 0.6em;
+    margin-bottom: 1em;
+    color: #343433;
+}
+
+h1 {
+    font-size: rem-calc( 28 );
+}
+h2 {
+    font-size: rem-calc( 26 );
+}
+h3 {
+    font-size: rem-calc( 24 );
+}
+h4 {
+    font-size: rem-calc( 22 );
+}
+
+p {
+    margin: rem-calc( 0 0 18 0 );
+}
+
+a {
+    color: get-color( orange );
+    transition: color 200ms ease-in-out;
+
+    &:hover,
+    &:active {
+        color: darken( get-color( orange ), 10% );
+    }
+    &:focus {
+
+    }
+}
+
+svg {
+    height: rem-calc( 20 );
+    width: rem-calc( 20 );
+    fill: #343433;
+}
+
+/**
+ * Layout
+ */
+.container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: rem-calc( 0 20 );
+
+    @include media(">desktop") {
+        padding: 0;
+    }
+}
+
+#header,
+#footer {
+    padding: rem-calc( 0 20 );
+
+    @include media(">desktop") {
+        padding: 0;
+    }
+}

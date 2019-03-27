@@ -1,7 +1,10 @@
 {{define "navigation"}}
-
-		<div class="menu-area">
-		
+		<div id="navigation">
+			<nav class="menu">
+				<ul>
+					<li{{ if eq .Page.Name "index" }} class="active"{{ end }}><a href="/">Home</a></li>
+					<li{{ if eq .Page.Name "docs" }} class="active"{{ end }}><a href="/docs">Docs</a></li>
+				</ul>
+			</nav>
 		</div>
-
 {{end}}

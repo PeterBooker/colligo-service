@@ -1,0 +1,30 @@
+/**
+ * Panel Component
+ */
+
+.panel {
+    padding: rem-calc( 40 0 );
+    background-color: get-color( bg );
+    min-height: rem-calc( 200 );
+
+    @include media(">tablet") {
+        padding: rem-calc( 60 0 );
+    }
+    @include media(">desktop") {
+        padding: rem-calc( 80 0 );
+    }
+
+    &:nth-child(odd) {
+        background-color: get-color( bg );
+    }
+    &:nth-child(even) {
+        background-color: darken( get-color( bg ), 6% );
+    }
+
+    &--bluedark {
+        background-color: get-color( c3 );
+        &:nth-child(n) {
+            background-color: get-color( c3 );
+        }
+    }
+}

@@ -2,3 +2,105 @@
  * Misc
  */
 
+/**
+ * Colours
+ */
+$colors: (
+    orange: #e95420,
+    green: #4f9ea6,
+    blue: #234A5C,
+    bluedark: #1F2E3C,
+    grey: #B4BECC,
+    greylight: #D0D7DF,
+
+    bg: #f7f7f7,
+
+    c1: #263C53,
+    c2: #304762,
+    c3: #36AFE8,
+
+    d1: #050228,
+    d2: #C5122D,
+    d3: #5FAFAC,
+
+    facebook: #3b5998,
+    linkedin: #0077b5,
+    twitter: #00aced,
+    reddit: #ff4500,
+    tumblr: #35465c,
+    pinterest: #bd081c,
+    email: #000,
+);
+
+/**
+ * Global Variables
+ */
+$base-font-size: 100%;
+$base-font-family: 'Hind', Arial, Helvetica, sans-serif;
+$base-line-height: 1.6;
+$base-font-color: get-color( grey );
+
+// Helper to get Color values
+@function get-color( $color-name ) {
+    @return map-get( $colors, $color-name );
+}
+
+/**
+ * Rem Calc Helper
+ * Simplified from Foundation for Sites: https://github.com/zurb/foundation-sites/blob/39056a7e821e052c1f7026505a4bbb748996d838/scss/util/_unit.scss
+ */
+@function rem-calc($values, $base: null) {
+    $rem-values: ();
+    $count: length($values);
+  
+    // If no base is defined, defer to the base font size
+    @if $base == null {
+      $base: $base-font-size;
+    }
+  
+    // If the base font size is a %, then multiply it by 16px
+    // This is because 100% font size = 16px in most all browsers
+    @if unit($base) == '%' {
+      $base: ($base / 100%) * 16px;
+    }
+  
+    // Using rem as base allows correct scaling
+    @if unit($base) == 'rem' {
+      $base: ( $base / ($base * 0 + 1) ) * 16px;
+    }
+  
+    @if $count == 1 {
+      @return to-rem($values, $base);
+    }
+  
+    @for $i from 1 through $count {
+        $rem-values: append($rem-values, to-rem(nth($values, $i), $base));
+    }
+  
+    @return $rem-values;
+}
+
+@function to-rem($value, $base: null) {
+    // Check if the value is a number
+    @if type-of($value) != 'number' {
+        @warn inspect($value) + ' was passed to rem-calc(), which is not a number.';
+        @return $value;
+    }
+
+    // Transform em into rem if someone hands over 'em's
+    @if unit($value) == 'em' {
+        $value: ($value / ( $value * 0 + 1 )) * 1rem;
+    }
+
+    // Calculate rem if units for $value is not rem or em
+    @if unit($value) != 'rem' {
+        $value: ($value / ( $value * 0 + 1 )) / ($base / ( $base * 0 + 1 )) * 1rem;
+    }
+
+    // Turn 0rem into 0
+    @if $value == 0rem {
+        $value: 0;
+    }
+  
+    @return $value;
+}

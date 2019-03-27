@@ -3,5 +3,39 @@
  */
 
 #header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: get-color( d1 );
+    padding: rem-calc( 0 20 );
 
+    @include media(">desktop") {
+        padding: rem-calc( 0 40 );
+    }
+
+    #logo,
+    #navigation {
+        
+    }
+
+    #logo {
+        margin: 0;
+        line-height: rem-calc( 60 );
+        font-size: rem-calc( 22 );
+    }
+
+    #navigation {
+        margin-left: auto;
+    }
+
+    a {
+        color: #ffffff;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            color: darken( #ffffff, 10% );
+        }
+    }
 }

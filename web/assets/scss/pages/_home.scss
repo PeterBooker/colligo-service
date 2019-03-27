@@ -1,0 +1,18 @@
+/**
+ * Home Page
+ */
+
+.home {
+    .panel:first-of-type {
+        background-color: get-color( d1 );
+        background-image: radial-gradient( farthest-side ellipse at 20% 90%, rgba( 230, 31, 96, 0.75 ), transparent 1000px ),
+                          radial-gradient( farthest-side circle at 40% 40%, rgba( 59, 214, 201, 0.75 ), transparent 600px ),
+                          radial-gradient( closest-corner circle at 80% 100%, rgba( 230, 31, 96, 0.75 ), transparent 400px );
+    }
+    .hero {
+        background-color: transparent;
+        .button-group {
+            padding-top: rem-calc( 40 );
+        }
+    }
+}
