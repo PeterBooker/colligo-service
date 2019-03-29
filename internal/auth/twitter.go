@@ -13,7 +13,7 @@ var (
 	twitterRequestTokenURL   = "https://api.twitter.com/oauth/request_token"
 	twitterAuthorizeTokenURL = "https://api.twitter.com/oauth/authorize"
 	twitterAccessTokenURL    = "https://api.twitter.com/oauth/access_token"
-	twitterCallbackURL       = "https://colligo.dev/api/v1/twitter/callback"
+	twitterCallbackURL       = "https://colligo.dev/api/v1/callback/twitter"
 )
 
 // TwitterGetToken ...
