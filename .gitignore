@@ -10,6 +10,10 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
+# Built binaries
+colligo.exe
+colligo
+
 # Embedded static files
 *embed.go
 
