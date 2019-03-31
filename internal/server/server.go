@@ -9,11 +9,11 @@ import (
 	"github.com/PeterBooker/colligo/internal/auth"
 	"github.com/PeterBooker/colligo/internal/client"
 	"github.com/PeterBooker/colligo/internal/config"
+	"github.com/PeterBooker/colligo/internal/store"
 	"github.com/PeterBooker/colligo/internal/templates"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/shurcooL/httpfs/html/vfstemplate"
-	//"github.com/mholt/certmagic"
 )
 
 var (
@@ -25,6 +25,7 @@ type Server struct {
 	Logger *log.Logger
 	Config *config.Config
 	Router *chi.Mux
+	Store  *store.Store
 	Client *http.Client
 }
 
@@ -34,9 +35,12 @@ func New(l *log.Logger, c *config.Config) *Server {
 	tmpl := template.New("").Funcs(template.FuncMap{})
 	tmpls = template.Must(vfstemplate.ParseGlob(templates.Files, tmpl, "*.html"))
 
+	st := store.New()
+
 	s := &Server{
 		Config: c,
 		Logger: l,
+		Store:  st,
 		Client: client.New(),
 	}
 
