@@ -11,17 +11,19 @@ const (
 	ttl = time.Minute * 15
 )
 
-// Store ...
+// Store stores visitor data
+// Used to process oAuth authentication
 type Store struct {
 	items map[string]*Visitor
 	sync.RWMutex
 }
 
-// Visitor ...
+// Visitor represents an API visitor
+// Eventually redirected back to Callback URL
 type Visitor struct {
-	Token     *oauth.RequestToken
-	OriginURL string
-	created   int64
+	Token    *oauth.RequestToken
+	Callback string
+	created  int64
 }
 
 // New returns a new Store
@@ -34,7 +36,7 @@ func New() *Store {
 	return s
 }
 
-// Purge ...
+// Purge remove old visitor data
 func (s *Store) Purge() {
 	for now := range time.Tick(time.Minute) {
 		s.Lock()
@@ -47,7 +49,7 @@ func (s *Store) Purge() {
 	}
 }
 
-// Get ...
+// Get fetches visitor data
 func (s *Store) Get(key string) (*Visitor, bool) {
 	s.RLock()
 	v, ok := s.items[key]
@@ -56,21 +58,21 @@ func (s *Store) Get(key string) (*Visitor, bool) {
 	return v, ok
 }
 
-// Set ...
+// Set stores visitor data
 func (s *Store) Set(key string, v *Visitor) {
 	s.Lock()
 	s.items[key] = v
 	s.Unlock()
 }
 
-// Del ...
+// Del removes visitor data
 func (s *Store) Del(key string) {
 	s.Lock()
 	delete(s.items, key)
 	s.Unlock()
 }
 
-// Exists ...
+// Exists checks for existence of visitor data
 func (s *Store) Exists(key string) bool {
 	s.RLock()
 	_, ok := s.items[key]
