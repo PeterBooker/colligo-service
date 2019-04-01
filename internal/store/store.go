@@ -60,6 +60,7 @@ func (s *Store) Get(key string) (*Visitor, bool) {
 
 // Set stores visitor data
 func (s *Store) Set(key string, v *Visitor) {
+	v.created = time.Now().Unix()
 	s.Lock()
 	s.items[key] = v
 	s.Unlock()
